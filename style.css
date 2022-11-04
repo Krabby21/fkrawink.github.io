@@ -48,10 +48,15 @@ section h1
 
 #section02 h2
 {
-    margin-top: 1000px;
+    margin-top: 50px;
     text-align: center;
-    font-size: 20px;
-    color: white;
+    font-size: 40px;
+    color: rgb(0, 0, 0);
+}
+
+#section02 p
+{
+    padding-left: 100;
 }
 
 .arrow,
