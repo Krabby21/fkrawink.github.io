@@ -49,22 +49,45 @@ section h1
 
 #section02 h2
 {
-    margin-top: 50px;
     margin-bottom: 20px;
     text-align: center;
     font-size: 40px;
     color: rgb(0, 0, 0);
 }
 
-#section02 p
-{
-    margin-top: 100px;
-    margin-left: 300px;
+.Project1,
+.Project2 {
+    display: flex;
 }
 
-#section02 img
+.Project1 .Picture1
 {
-    margin-left: 100px;
+    display: flex;
+    width: 30%;
+}
+
+.Project1 .Text1
+{
+    padding: 20px;
+    display: flex;
+    width: 70%;
+}
+
+.right {
+    justify-content: end;
+}
+
+.Project2 .Picture2
+{
+    display: flex;
+    width: 30%;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.Project2 .Text2
+{
+
 }
 
 .arrow,
