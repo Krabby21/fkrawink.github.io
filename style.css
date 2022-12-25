@@ -1,4 +1,5 @@
-*{
+*
+{
    margin: 0;
    padding: 0; 
    scroll-behavior: smooth;
@@ -30,7 +31,6 @@ section:after
     background-color: black;
     max-width: 100vw;
 }
-#section02{background-color: rgb(51, 255, 189) ;}
 
 section h1 
 {
@@ -47,7 +47,35 @@ section h1
     white-space: nowrap;
 }
 
-#section02 h2
+#section02
+{
+    background-color: antiquewhite;
+}
+
+#section02 h3
+{
+    text-align: center;
+    font-size: 40px;
+    color: rgb(0, 0, 0);
+    margin-bottom: 20px;
+}
+
+.PersonalIntroduction .PictureOfMe
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.PersonalIntroduction .TextAboutMe
+{
+    display: flex;
+}
+#section03
+{
+    background-color: rgb(51, 255, 189) ;
+}
+
+#section03 h2
 {
     margin-bottom: 20px;
     text-align: center;
@@ -136,10 +164,12 @@ section h1
   
 @keyframes arrow
 {
-    0%{
+    0%
+    {
         opacity: 1;
     }
-    100%{
+    100%
+    {
         opacity: 0;
         transform: translate(-10px, -10px);
     }
