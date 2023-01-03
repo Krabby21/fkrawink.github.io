@@ -4,9 +4,15 @@
    padding: 0; 
    scroll-behavior: smooth;
 }
+@font-face {
+    font-family: Bogart;
+    src: url(Bogart.ttf);
+}
 
 body
 {
+    font-family: Bogart;
+    background-color: #080808;
     height: 100%;
 }
 
@@ -28,35 +34,33 @@ section:after
 }
 #section01
 {
-    background-color: black;
     max-width: 100vw;
 }
 
-section h1 
+
+#section01 .Introduction_Title
 {
-    position: absolute;
-    padding-top: 50%;
-    left: 50%;
-    z-index: 2;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    color:rgb(0,255,183);
-    font-size: 100px;
-    font-family: Playfair Display;
+    color: rgb(255, 255, 255);
+    background: linear-gradient(270deg,#a0e9ff 30%,#a162e8 50%,#f093b0 70%,#edca85 94%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-top: 20%;
+    font-family: Bogart;
     text-align: center;
-    white-space: nowrap;
+    font-size: 6em;
+    font-weight: 500;
 }
 
 #section02
 {
-    background-color: antiquewhite;
+ 
 }
 
 #section02 h3
 {
     text-align: center;
     font-size: 40px;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     margin-bottom: 20px;
 }
 
@@ -69,10 +73,11 @@ section h1
 .PersonalIntroduction .TextAboutMe
 {
     display: flex;
+    color: rgb(255, 255, 255);
 }
 #section03
 {
-    background-color: rgb(51, 255, 189) ;
+
 }
 
 #section03 h2
@@ -80,7 +85,7 @@ section h1
     margin-bottom: 20px;
     text-align: center;
     font-size: 40px;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
 }
 
 .Project1,
@@ -102,6 +107,7 @@ section h1
 {
     padding-top: 5%;
     padding-right: 5%;
+    color: #fff;
     display: flex;
     align-items: center;
     justify-items: center;
@@ -119,6 +125,7 @@ section h1
 {
     padding-top: 10%;
     padding-right: 5%;
+    color: #fff;
     display: flex;
     align-items: center;
     justify-items: center;
