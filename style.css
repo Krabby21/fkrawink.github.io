@@ -69,10 +69,21 @@ section:after
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 50%;
+    height: 50%;
+    padding-left: 50%;
+    padding-top: 20%;
+    
 }
 .PersonalIntroduction .TextAboutMe
 {
     display: flex;
+    align-items: left;
+    justify-content: left;
+    width: 50%;
+    height: 50%;
+    padding-right: 50%;
+    padding-top: 20%;
     color: rgb(255, 255, 255);
 }
 #section03
