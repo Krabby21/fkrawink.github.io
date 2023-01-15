@@ -12,7 +12,7 @@
 body
 {
     font-family: Bogart;
-    background-color: #080808;
+    background-color: #0c0b0b;
     height: 100%;
 }
 
@@ -45,7 +45,6 @@ section:after
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     padding-top: 20%;
-    font-family: Bogart;
     text-align: center;
     font-size: 6em;
     font-weight: 500;
@@ -60,11 +59,11 @@ section:after
     display: flex;
 }
 
-img
+#PictureOfMe
 {
     width: calc(50% - 25%);
     padding: 100px 40px 40px 300px;
-    border-radius: 50%;
+    border-radius: 20%;
 }
 
 #TextAboutMe
@@ -82,6 +81,9 @@ img
     justify-content: center;
     font-size: 40px;
     color: rgb(255, 255, 255);
+    background: linear-gradient(270deg,#a0e9ff 30%,#a162e8 50%,#f093b0 70%,#edca85 94%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 #section03
@@ -95,50 +97,26 @@ img
     text-align: center;
     font-size: 40px;
     color: rgb(255, 255, 255);
+    background: linear-gradient(270deg,#a0e9ff 30%,#a162e8 50%,#f093b0 70%,#edca85 94%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.Project1,
-.Project2
+.Projects h4
 {
-    display: flex;
+    margin-top: 40px;
+    margin-bottom: 50px;
+    text-align: center;
+    font-size: 30px;
+    color: rgb(255, 255, 255);
 }
 
-.Project1 .Picture1
+.Projects img
 {
-    padding-top: 5%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30%;
-}
-
-.Project1 .Text1
-{
-    padding-top: 5%;
-    padding-right: 5%;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-items: center;
-    width: 70%;
-}
-.Project2 .Picture2
-{
-    padding-top: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30%;
-}
-.Project2 .Text2
-{
-    padding-top: 10%;
-    padding-right: 5%;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-items: center;
-    width: 70%;
+    width: 50%;
+    height: 50%;
+    border-radius: 20px;
+    margin: 0 0 0 25%;
 }
 
 .arrow,
