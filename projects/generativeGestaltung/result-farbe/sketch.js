@@ -10,14 +10,12 @@ https://cnoss.github.io/generative-gestaltung/
 
 ############################################################################ */
 
-
-let saveParams = {
-  sketchName: 'gg-startercode'
+const saveParams = {
+  sketchName: "gg-sketch"
 }
 
-
 // Params for canvas
-let canvasParams = {
+const canvasParams = {
   holder: document.getElementById('canvas'),
   state: false,
   mouseX: false,
@@ -25,81 +23,70 @@ let canvasParams = {
   mouseLock: false,
   background: 0,
   gui: true,
-  mode: 'canvas', // canvas, svg or WEBGL - svg mode is experimental 
+  mode: 'canvas', // canvas or svg … SVG mode is experimental 
 };
 getCanvasHolderSize();
 
 // Params for the drawing
-let drawingParams = {
-  gridSize: 20,
-  gridSizeMax: 100,
-  gridSizeMin: 5,
-  gridSizeStep: 5,
-  gridAlpha: 20,
-
-  strokeWeight: 1,
-  strokeAlpha: 50,
-  lines: 10,
-  innerRadius1: 40,
-  outerRadius1: 120,
-  innerRadius2: 40,
-  outerRadius2: 120,
-  padding: 20,
-  hueStart: 0,
-  hueStartMax: 360,
-
-  hueEnd: 360,
-  hueEndMax: 360,
-
+const drawingParams = {
+  circles: 24,
+  radius: 100,
+  radiusMin: 100,
+  radiusMax: 300,
+  radiusStep: 10,
+  alphaBackground: 50,
+  alphaBackgroundMax: 100,
+  alphaBackgroundMin: 0,
+  Hue: 180,
+  HueMax: 360,
+  HueMin: 1
 };
 
 // Params for logging
-let loggingParams = {
+const loggingParams = {
   targetDrawingParams: document.getElementById('drawingParams'),
   targetCanvasParams: document.getElementById('canvasParams'),
   state: false
 };
 
-let areas = [];
 
-let innerRadius = 0;
-let innerIncrement = 0.7;
-let innerIncrementDirection = 1;
+
 
 
 /* ###########################################################################
 Classes
 ############################################################################ */
+class Ball
+{
+  constructor(x,y,ellipseSize,color)
+  {
+    this.x = x;
+    this.y = y;
+    this.directionX = random(-5,5);
+    this.directionY = random(-5,5);
+    this.speed = drawingParams.ballSpeed;
+    this.ellipseSize = ellipseSize;
+    this.color = color;
+    this.ballOpacity = drawingParams.ballOpacity
+  }
+
+  draw()
+  {
+    strokeWeight(drawingParams.ballStrokeWeight)
+    fill(this.color, 100, 100, this.ballOpacity)
+    ellipse(this.x,this.y, this.ellipseSize);
+    this.x = this.x + this.speed*this.directionX;
+    this.y =this.y + this.speed*this.directionY;
+  }
+}
+
 
 
 /* ###########################################################################
 Custom Functions
 ############################################################################ */
 
-function drawGrid() { 
 
-  push();
-  translate(width/2, height/2);
-  let maxDimension = (width / height > 1) ? width : height;
-  let halfWidth = width / 2;
-  let halfheight= width / 2;
-  let steps = maxDimension * 0.5 / drawingParams.gridSize;
-
-  stroke(0, 0, 0, drawingParams.gridAlpha);
-
-  for (i = 0; i <= steps; i++) { 
-    let weight = (i % 10 === 0) ? 0.5 : 0.2;
-    strokeWeight(weight);
-    let positive  = (i * drawingParams.gridSize);
-    let negative = -positive ;
-    line(positive, -halfheight, positive, halfheight);
-    line(negative, -halfheight, negative, halfheight);
-    line(-halfWidth, positive, halfWidth, positive);
-    line(-halfWidth, negative, halfWidth, negative);
-  }
-  pop();
-
-}
 
 
 
@@ -107,47 +94,38 @@ function drawGrid() {
 P5 Functions
 ############################################################################ */
 
-
 function setup() {
-  
+
+  colorMode(HSB, 360, 100, 100, 100);
   let canvas;
-  if (canvasParams.mode === 'svg') {
+  if (canvasParams.mode === 'SVG') {
     canvas = createCanvas(canvasParams.w, canvasParams.h, SVG);
-  } else if (canvasParams.mode === 'WEBGL') { 
-    canvas = createCanvas(canvasParams.w, canvasParams.h, WEBGL);
-    canvas.parent("canvas");
   } else { 
     canvas = createCanvas(canvasParams.w, canvasParams.h);
     canvas.parent("canvas");
   }
 
   // Display & Render Options
-  // frameRate(25);
-  angleMode(DEGREES);
+  frameRate(25);
+  // angleMode(DEGREES);
   smooth();
-  // colorMode(HSB, 360, 100, 100, 100);
 
   // GUI Management
   if (canvasParams.gui) { 
-    let sketchGUI = createGui('Params');
+    const sketchGUI = createGui('Params');
     sketchGUI.addObject(drawingParams);
     //noLoop();
   }
 
   // Anything else
-  fill(0);
-  // noStroke();
-  stroke(0,0,90,5);
-  strokeWeight(0.5);
-  ellipseMode(CENTER);
-
-  colorMode(HSB, 360, 100, 100, 100);
-  
+  fill(200);
+  stroke(0);
 }
 
 
 
-function draw() {
+function draw() 
+{
 
   /* ----------------------------------------------------------------------- */
   // Log globals
@@ -159,34 +137,29 @@ function draw() {
 
   /* ----------------------------------------------------------------------- */
   // Provide your Code below
-  background(0);
-  stroke(255);
-  fill(255);
-  translate(width / 2, height / 2);
+  background(0, 0, 0, drawingParams.alphaBackground);
+  fill(drawingParams.Hue, 100, 100, 100);
 
-  strokeWeight(drawingParams.strokeWeight);
-  
-  let angleSteps = 360 / drawingParams.lines;
-  
-  innerRadius = innerRadius + (innerIncrement * innerIncrementDirection);
-  if (innerRadius > width) { innerIncrementDirection = -1; }
-  if (innerRadius < -width ) { innerIncrementDirection = 1; }
-
-  for (let angle = 0; angle <= 360; angle += angleSteps) { 
-    let x1 = cos(angle) * innerRadius;
-    let y1 = sin(angle) * drawingParams.innerRadius2;
-
-    let x2 = cos(angle) * drawingParams.outerRadius1;
-    let y2 = sin(angle) * drawingParams.outerRadius2;
-
-    let hue = map(angle, 0, 360, drawingParams.hueStart, drawingParams.hueEnd);
-    stroke(hue, 100, 100, drawingParams.strokeAlpha);
-    
-    line(x1, y1, x2, y2);
-  }
+  drawCircleOfDots(drawingParams.circles,mouseX/2,width/2,height/2)
 }
 
+const drawCircleOfDots = (dots,cR,cX,cY) => 
+{
+  const circles = dots;
+  const radius = cR;
+  const steps = (PI*2) / circles;
 
+  for(let angle = 0; angle < PI*2; angle+=steps)
+  {
+    const x = cos(angle) * radius;
+    const y = sin(angle) * radius;
+
+    const startingPointX = x+cX;
+    const startingPointY = y+cY;
+
+    ellipse(startingPointX, startingPointY, 10)
+  }
+}
 
 function keyPressed() {
 
@@ -203,15 +176,11 @@ function keyPressed() {
   }
 
   if (keyCode === 83) { // S-Key
-
-    let suffix = (canvasParams.mode === "svg") ? '.svg' : '.png';
-    let fragments = location.href.split(/\//).reverse().filter(fragment => {
-      return (fragment.match !== 'index.html' && fragment.length > 2) ? fragment : false;
-    });
-    let suggestion = fragments.shift();
-  
-    let fn = prompt(`Filename for ${suffix}`, suggestion);
-    save(fn + suffix);
+    const suffix = (canvasParams.mode === "canvas") ? '.jpg' : '.svg';
+    const fragments = location.href.split(/\//).reverse();
+    const suggestion = fragments[1] ? fragments[1] : 'gg-sketch';
+    const fn = prompt(`Filename for ${suffix}`, suggestion);
+    if (fn !== null) save(fn + suffix);
   }
 
   if (keyCode === 49) { // 1-Key
@@ -234,13 +203,11 @@ function keyPressed() {
 
 
 
-function mousePressed() {
-}
+function mousePressed() {}
 
 
 
-function mouseReleased() {
-}
+function mouseReleased() {}
 
 
 
@@ -293,4 +260,3 @@ function logInfo(content) {
   }
 
 }
-

@@ -10,7 +10,8 @@ https://cnoss.github.io/generative-gestaltung/
 
 ############################################################################ */
 
-const saveParams = {
+const saveParams = 
+{
   sketchName: "gg-sketch"
 }
 
@@ -36,12 +37,6 @@ const drawingParams =
   ballStrokeWeight: 0,
   ballStrokeWeightMax: 10,
   balllStrokeWeightStep: 0.1,
-  ballOpacity: 100,
-  ballOpacityMax: 100,
-  ballOpacityMin: 10,
-  ballSpeed: 4,
-  ballSpeedMax: 20,
-  ballSpeedMin: 1,
   trails: 50,
   trailsMax: 100,
   trailsMin: 1,
@@ -51,15 +46,8 @@ const drawingParams =
   hunterStrokeWeight: 1,
   hunterStrokeWeightMax: 10,
   hunterStrokeWeightStep: 0.1,
-  hunterSpeed: 4,
-  hunterSpeedMax: 20,
-  hunterSpeedMin: 1,
-  hunterBrightness: 0,
-  hunterBrightnessMax: 100,
-  hunterBrightnessMin:0,
   placeDot: true,
   placeHunter: false,
-
 };
 
 // Params for logging
@@ -83,18 +71,17 @@ class Ball
     this.y = y;
     this.directionX = random(-5,5);
     this.directionY = random(-5,5);
-    this.speed = drawingParams.ballSpeed;
     this.ellipseSize = ellipseSize;
-    this.age = 0
+    this.age = 0;
+    this.speed = 5;
     this.color = color;
-    this.ballOpacity = drawingParams.ballOpacity
   }
 
   draw()
   {
     stroke(255)
     strokeWeight(drawingParams.ballStrokeWeight)
-    fill(this.color, 100, 100, this.ballOpacity)
+    fill(this.color, 100, 100, 100)
     ellipse(this.x,this.y, this.ellipseSize);
     this.x = this.x + this.speed*this.directionX;
     this.y =this.y + this.speed*this.directionY;
@@ -144,14 +131,14 @@ class Hunter
     this.yPos = yPos;
     this.hunterDirectionX = random(-1, 1);
     this.hunterDirectionY = random(-1, 1);
-    this.speed = drawingParams.hunterSpeed;
+    this.speed = 5;
   }
 
   draw()
   {
     stroke(255)
     strokeWeight(drawingParams.hunterStrokeWeight)
-    fill(0, 100, drawingParams.hunterBrightness, 100)
+    fill(0, 100, 0, 100)
     ellipse(this.xPos,this.yPos, drawingParams.hunterSize);
     this.xPos = this.xPos + this.speed*this.hunterDirectionX;
     this.yPos =this.yPos + this.speed*this.hunterDirectionY;

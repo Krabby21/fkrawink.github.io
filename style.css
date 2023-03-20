@@ -36,7 +36,6 @@ section:after
     max-width: 100vw;
 }
 
-
 #section01 .Introduction_Title
 {
     color: rgb(255, 255, 255);
@@ -49,33 +48,34 @@ section:after
     font-weight: 500;
 }
 
+#section02
+{
+    max-width: 100vw;
+}
+
 #section02 .Introduction
 {
     display: flex;
-    align-items: left;
-    justify-content: left;
     color: rgb(255, 255, 255);
-    display: flex;
 }
 
 #section02 .Introduction #TextAboutMe h6
 {
     font-size: 24px;
-    padding-bottom: 20px;
+    padding-bottom: 2%;
 }
 
 #PictureOfMe
 {
+    
     width: calc(50% - 30%);
-    padding: 100px 40px 40px 300px;
+    padding: 7% 10% 4% 20%;
 }
 
 #TextAboutMe
 {
     width: calc(50% - 25%);
-    padding: 90px 200px 40px 100px;
-    text-align: left;
-    justify-content: center;
+    padding: 12% 20% 4% 10%;
 
 }
 

@@ -11,7 +11,7 @@ https://cnoss.github.io/generative-gestaltung/
 ############################################################################ */
 
 const saveParams = {
-  sketchName: "gg-sketch"
+  sketchName: "gg-startercode"
 }
 
 // Params for canvas
@@ -32,11 +32,19 @@ const drawingParams = {
   strokeWeight: 1,
   strokeWeightMax: 10,
   strokeWeightStep: 0.1,
-  circles: 24,
-  radius: 100,
-  radiusMin: 100,
-  radiusMax: 300,
-  radiusStep: 10
+  alphaBackground: 50,
+  alphaBackgroundMax: 100,
+  alphaBackgroundMin: 1,
+  redShare: 255,
+  redShareMax: 255,
+  redShareMin: 0,
+  greenShare: 255,
+  greenShareMax: 255,
+  greenShareMin: 0,
+  blueShare: 255,
+  blueShareMax: 255,
+  blueShareMin: 0
+
 };
 
 // Params for logging
@@ -82,7 +90,7 @@ function setup() {
 
   // Display & Render Options
   frameRate(25);
-  // angleMode(DEGREES);
+  angleMode(DEGREES);
   smooth();
 
   // GUI Management
@@ -98,7 +106,6 @@ function setup() {
 }
 
 
-
 function draw() {
 
   /* ----------------------------------------------------------------------- */
@@ -111,29 +118,35 @@ function draw() {
 
   /* ----------------------------------------------------------------------- */
   // Provide your Code below
-  background(255);
-  fill(0);
+  background(drawingParams.redShare,drawingParams.greenShare ,drawingParams.blueShare ,drawingParams.alphaBackground);
 
-  drawCircleOfDots(drawingParams.circles,drawingParams.radius,width/2,height/2)
-}
+  strokeWeight(drawingParams.strokeWeight)
+  
+  fill(0,50);
 
-const drawCircleOfDots = (dots,cR,cX,cY) => 
-{
-  const circles = dots;
-  const radius = cR;
-  const steps = (PI*2) / circles;
+  translate(width/2, height/2)
 
-  for(let angle = 0; angle < PI*2; angle+=steps)
+  let circleSize= 5;
+
+  let circles = width/(circleSize);
+
+  let leftStartPosition = 0;
+  let rightStartPosition = 0;
+
+  randomSeed(99);
+  for(let i = 0; i <= circles; i++)
   {
-    const x = cos(angle) * radius;
-    const y = sin(angle) * radius;
-
-    ellipse(x+cX, y+cY, 10)
+    ellipse(leftStartPosition+i*-2*circleSize, 0, circleSize*random(1,mouseX/8), circleSize*random(1,mouseX/8));
+    ellipse(rightStartPosition+i*2*circleSize, 0, circleSize*random(1,mouseX/8), circleSize*random(1,mouseX/8));
   }
 }
 
 
-function keyPressed() {
+function keyPressed() 
+{
+  if(keyCode === 72){
+    sketchGUI.toggleVisibility()
+  }
 
   if (keyCode === 81) { // Q-Key
   }
