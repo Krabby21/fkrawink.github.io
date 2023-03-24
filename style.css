@@ -58,12 +58,18 @@ section:after
     display: flex;
 }
 
-#section02 .Introduction #TextAboutMe h6
+#section02 .Introduction #TextAboutMe h2
 {
     font-size: 24px;
     padding-bottom: 20px;
 }
 
+.Container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 #PictureOfMe
 {
     width: calc(50% - 30%);
@@ -76,6 +82,7 @@ section:after
     padding: 90px 200px 40px 100px;
     text-align: left;
     justify-content: center;
+    color: white;
 
 }
 
